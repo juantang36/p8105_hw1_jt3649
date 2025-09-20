@@ -2,7 +2,7 @@
 title: "p8105_hw1_jt3649"
 author: "Juan Tang"
 date: "2025-09-20"
-output: html_document
+output: github_document
 ---
 ## Problem 1
 ```{r}
@@ -79,7 +79,7 @@ The mean of logical_vec is `r mean(pull(df, "logical_vec"))`. This mean also wor
 char_vec and factor_vec cannot take mean values because they are text and categorical labels. 
 
 ### as.numeric Function
-```{r}
+```{r, eval=FALSE}
 as.numeric(pull(df, "random_sample")) 
 as.numeric(pull(df, "logical_vec"))
 as.numeric(pull(df, "factor_vec"))
