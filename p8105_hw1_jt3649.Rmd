@@ -48,7 +48,7 @@ Creating a dataframe
 ```{r}
 df=tibble(
   random_sample = rnorm(10), 
-  vec_positive = random_sample > 0, 
+  logical_vec = random_sample > 0, 
   char_vec = letters[1:10], 
   factor_vec = factor(rep(c("low", "medium", "high"), 
                           length.out = 10),
@@ -61,34 +61,31 @@ df
 ```
 Take the mean of each variable in the dataframe df
 ```{r}
+#valid output for numeric variable
 mean_random_sample = mean(pull(df, "random_sample")) 
 cat("Mean of random sample variable =", mean_random_sample)
-#valid output for numeric variable
-
-mean_vec_positive = mean(pull(df, "vec_positive"))
-cat("Mean of positive vectors =", mean_vec_positive)
 #valid output for logical variable
-
-mean_char_vec = mean(pull(df, "char_vec"))
+mean_logical_vec = mean(pull(df, "logical_vec"))
+cat("Mean of logical vector =", mean_logical_vec)
 #invalid output for character variable
-
-mean_factor_vec = mean(pull(df, "factor_vec"))
+mean_char_vec = mean(pull(df, "char_vec"))
 #invalid output for factor variable
+mean_factor_vec = mean(pull(df, "factor_vec"))
 ```
 
 ### Explanation
 The mean of random_sample is `r mean(pull(df, "random_sample"))`. This mean works because it's numeric value. 
-The mean of vec_positive is `r mean(pull(df, "vec_positive"))`. This mean also works because logical values are coerced to 0 (False) or 1 (TRUE). When a mean is requested, the system automatically convert each TRUE to a 1 and each FALSE to a 0. It then adds up all the 1s and 0s, and devides the sum by the total number of values in the list. 
+The mean of logical_vec is `r mean(pull(df, "logical_vec"))`. This mean also works because logical values are coerced to 0 (False) or 1 (TRUE). When a mean is requested, the system automatically convert each TRUE to a 1 and each FALSE to a 0. It then adds up all the 1s and 0s, and devides the sum by the total number of values in the list. 
 char_vec and factor_vec cannot take mean values because they are text and categorical labels. 
 
 ### as.numeric Function
 ```{r}
 as.numeric(pull(df, "random_sample")) 
-as.numeric(pull(df, "vec_positive"))
+as.numeric(pull(df, "logical_vec"))
 as.numeric(pull(df, "factor_vec"))
 ```
 ### Explanation (as.numeric function)
-The as.numeric function converts logical variables to numeric numbers. "as.numeric(pull(df, "vec_positive"))" defines TRUE = 1 and FALSE = 0. The mean therefore represents the proportion of TRUE values. 
+The as.numeric function converts logical variables to numeric numbers. "as.numeric(pull(df, "logical_vec"))" defines TRUE = 1 and FALSE = 0. The mean therefore represents the proportion of TRUE values. 
 Factor vectors can be coerces to numeric, but they are converted to the internal integer codes of the level (eg. low = 1, medium = 2, high = 3). In this case, the mean can be computed. 
 The function fails to convert characters (string) to numeric, the output is "NA". Mean cannot be taken for characters because characters cannot be meaningfully converted into numbers.
 Hence, mean() function works for numeric and logical variables, and fails for character and factor. But if we use as.numeric to convert factors to numeric numbers, mean can still be taken. 
