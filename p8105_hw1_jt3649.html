@@ -401,18 +401,20 @@ Saving the plot</p>
 <div id="description-of-scatterplot" class="section level3">
 <h3>Description of Scatterplot</h3>
 <p>The scatterplot shows how temperature in New York changed during the
-first two weeks of January 2013, with point color representing humidity.
-Overall, the temperature gradually increased across the period, but
-there were daily fluctuations that reflect natural day–night cycles.
+first two weeks of January 2013, with x-axis representing time, y-axis
+representing temperature in ºF, and point color representing humidity.
+The pattern shows a regular daily fluctuation in temperature, presenting
+a consistent wave-like pattern.The temperature rises during daylight
+hours and falls at night. Across the two-week period, there appears to
+be a general upward trend in temperatures, with later days showing
+higher temperatures overall compared to the beginning of the period.
 Around January 14, there is a noticeable peak where the temperature
-exceeded 55°F. Humidity varies throughout the time series, with
-lighter-colored points indicating higher humidity. In some cases, higher
-temperatures coincide with higher humidity, but the relationship is not
-strictly linear.</p>
-<p>Inverse relationship - higher temperatures (peaks of the waves)
-correspond with lower humidity levels - lower temperatures (troughs of
-the wav) correspond with higher humidity levels (darker colored
-points)</p>
+exceeded 56°F.</p>
+<p>There is an inverse relationship between temperature and humidity in
+general although the relationship is not strictly linear. Higher
+temperatures are shown to correspond with lower humidity levels (darker
+color) and lower temperatures correspond with higher humidity levels
+(lighter colored points).</p>
 </div>
 </div>
 <div id="problem-2" class="section level2">
@@ -431,23 +433,23 @@ points)</p>
 <pre><code>## # A tibble: 10 × 4
 ##    random_sample vec_positive char_vec factor_vec
 ##            &lt;dbl&gt; &lt;lgl&gt;        &lt;chr&gt;    &lt;fct&gt;     
-##  1       -1.41   FALSE        a        low       
-##  2        1.06   TRUE         b        medium    
-##  3        0.0666 TRUE         c        high      
-##  4       -0.568  FALSE        d        low       
-##  5       -1.27   FALSE        e        medium    
-##  6        0.840  TRUE         f        high      
-##  7       -1.16   FALSE        g        low       
-##  8        0.274  TRUE         h        medium    
-##  9        1.14   TRUE         i        high      
-## 10       -0.389  FALSE        j        low</code></pre>
+##  1         0.427 TRUE         a        low       
+##  2        -1.22  FALSE        b        medium    
+##  3        -0.929 FALSE        c        high      
+##  4         0.841 TRUE         d        low       
+##  5        -1.29  FALSE        e        medium    
+##  6        -1.41  FALSE        f        high      
+##  7        -1.08  FALSE        g        low       
+##  8         0.105 TRUE         h        medium    
+##  9        -0.552 FALSE        i        high      
+## 10        -0.492 FALSE        j        low</code></pre>
 <p>Take the mean of each variable in the dataframe df</p>
 <pre class="r"><code>mean_random_sample = mean(pull(df, &quot;random_sample&quot;)) 
 cat(&quot;Mean of random sample variable =&quot;, mean_random_sample)</code></pre>
-<pre><code>## Mean of random sample variable = -0.1415729</code></pre>
+<pre><code>## Mean of random sample variable = -0.5608638</code></pre>
 <pre class="r"><code>mean_vec_positive = mean(pull(df, &quot;vec_positive&quot;))
 cat(&quot;Mean of positive vectors =&quot;, mean_vec_positive)</code></pre>
-<pre><code>## Mean of positive vectors = 0.5</code></pre>
+<pre><code>## Mean of positive vectors = 0.3</code></pre>
 <pre class="r"><code>mean_char_vec = mean(pull(df, &quot;char_vec&quot;))</code></pre>
 <pre><code>## Warning in mean.default(pull(df, &quot;char_vec&quot;)): argument is not numeric or
 ## logical: returning NA</code></pre>
@@ -456,8 +458,8 @@ cat(&quot;Mean of positive vectors =&quot;, mean_vec_positive)</code></pre>
 ## logical: returning NA</code></pre>
 <div id="explanation" class="section level3">
 <h3>Explanation</h3>
-<p>The mean of random_sample is -0.1415729. This mean works because it’s
-numeric value. The mean of vec_positive is 0.5. This mean also works
+<p>The mean of random_sample is -0.5608638. This mean works because it’s
+numeric value. The mean of vec_positive is 0.3. This mean also works
 because logical values are coerced to 0 (False) or 1 (TRUE). When a mean
 is requested, the system automatically convert each TRUE to a 1 and each
 FALSE to a 0. It then adds up all the 1s and 0s, and devides the sum by
@@ -467,10 +469,10 @@ take mean values because they are text and categorical labels.</p>
 <div id="as.numeric-function" class="section level3">
 <h3>as.numeric Function</h3>
 <pre class="r"><code>as.numeric(pull(df, &quot;random_sample&quot;))</code></pre>
-<pre><code>##  [1] -1.40933930  1.06319145  0.06663203 -0.56837991 -1.27453256  0.84021131
-##  [7] -1.16393992  0.27412003  1.14483467 -0.38852636</code></pre>
+<pre><code>##  [1]  0.4265282 -1.2219503 -0.9294257  0.8414156 -1.2892877 -1.4137867
+##  [7] -1.0833633  0.1051382 -0.5522065 -0.4916998</code></pre>
 <pre class="r"><code>as.numeric(pull(df, &quot;vec_positive&quot;))</code></pre>
-<pre><code>##  [1] 0 1 1 0 0 1 0 1 1 0</code></pre>
+<pre><code>##  [1] 1 0 0 1 0 0 0 1 0 0</code></pre>
 <pre class="r"><code>as.numeric(pull(df, &quot;char_vec&quot;))</code></pre>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
