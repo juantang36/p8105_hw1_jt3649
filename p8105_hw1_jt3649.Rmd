@@ -14,7 +14,8 @@ data("early_january_weather")
 ### Dataset Description
 The `early_january_weather` dataset has `r nrow(early_january_weather)` rows (observations) and 
 `r ncol(early_january_weather)` columns (variables).
-Variables include: origin, date/time variables (year, month, day, hour), temperature in Fahrenheit (temp), dew point temperature (dewp), humidity (humid), wind characteristics variables (wind_air, wind_speed, wind_gust), precipitation (precip), pressure (pressure), visibility (visib), and time_hour. 
+
+The variables in this dataset are: `r paste(names(early_january_weather), collapse = ", ")`.
 
 The mean temperature across all observations is `r mean(pull(early_january_weather, "temp"), na.rm = TRUE)` ºF.
 
@@ -62,13 +63,17 @@ Take the mean of each variable in the dataframe df
 ```{r}
 mean_random_sample = mean(pull(df, "random_sample")) 
 cat("Mean of random sample variable =", mean_random_sample)
+#valid output for numeric variable
 
 mean_vec_positive = mean(pull(df, "vec_positive"))
 cat("Mean of positive vectors =", mean_vec_positive)
+#valid output for logical variable
 
 mean_char_vec = mean(pull(df, "char_vec"))
+#invalid output for character variable
 
 mean_factor_vec = mean(pull(df, "factor_vec"))
+#invalid output for factor variable
 ```
 
 ### Explanation
@@ -78,8 +83,12 @@ char_vec and factor_vec cannot take mean values because they are text and catego
 
 ### as.numeric Function
 ```{r}
-as.numeric(pull(df, "random_sample"))
+as.numeric(pull(df, "random_sample")) 
 as.numeric(pull(df, "vec_positive"))
-as.numeric(pull(df, "char_vec"))
 as.numeric(pull(df, "factor_vec"))
 ```
+### Explanation (as.numeric function)
+The as.numeric function converts logical variables to numeric numbers. "as.numeric(pull(df, "vec_positive"))" defines TRUE = 1 and FALSE = 0. The mean therefore represents the proportion of TRUE values. 
+Factor vectors can be coerces to numeric, but they are converted to the internal integer codes of the level (eg. low = 1, medium = 2, high = 3). In this case, the mean can be computed. 
+The function fails to convert characters (string) to numeric, the output is "NA". Mean cannot be taken for characters because characters cannot be meaningfully converted into numbers.
+Hence, mean() function works for numeric and logical variables, and fails for character and factor. But if we use as.numeric to convert factors to numeric numbers, mean can still be taken. 
