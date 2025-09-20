@@ -1,7 +1,7 @@
 ---
 title: "p8105_hw1_jt3649"
 author: "Juan Tang"
-date: "`r Sys.Date()`"
+date: "2025-09-20"
 output: html_document
 ---
 ## Problem 1
@@ -36,12 +36,10 @@ ggsave("temperature_vs_time_hour_Scatterplot.png", width = 8, height = 6)
 ```
 
 ### Description of Scatterplot
-The scatterplot shows how temperature in New York changed during the first two weeks of January 2013, with point color representing humidity. Overall, the temperature gradually increased across the period, but there were daily fluctuations that reflect natural day–night cycles. Around January 14, there is a noticeable peak where the temperature exceeded 55°F. Humidity varies throughout the time series, with lighter-colored points indicating higher humidity. In some cases, higher temperatures coincide with higher humidity, but the relationship is not strictly linear.
+The scatterplot shows how temperature in New York changed during the first two weeks of January 2013, with x-axis representing time, y-axis representing temperature in ºF, and point color representing humidity. 
+The pattern shows a regular daily fluctuation in temperature, presenting a consistent wave-like pattern.The temperature rises during daylight hours and falls at night. Across the two-week period, there appears to be a general upward trend in temperatures, with later days showing higher temperatures overall compared to the beginning of the period. Around January 14, there is a noticeable peak where the temperature exceeded 56°F.
 
-Inverse relationship
-- higher temperatures (peaks of the waves) correspond with lower humidity levels
-- lower temperatures (troughs of the wav) correspond with higher humidity levels (darker colored points)
-
+There is an inverse relationship between temperature and humidity in general although the relationship is not strictly linear. Higher temperatures are shown to correspond with lower humidity levels (darker color) and lower temperatures correspond with higher humidity levels (lighter colored points). 
 
 
 ## Problem 2
