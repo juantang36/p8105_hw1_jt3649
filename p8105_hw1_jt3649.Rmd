@@ -47,12 +47,12 @@ There is an inverse relationship between temperature and humidity in general alt
 Creating a dataframe
 ```{r}
 df=tibble(
-  random_sample = rnorm(10), 
-  logical_vec = random_sample > 0, 
-  char_vec = letters[1:10], 
+  random_sample = rnorm(10), #a random sample of size 10 from a standard Normal distribution
+  logical_vec = random_sample > 0, #logical vectors indicating whether the values in the random sample is positive (TRUE) or not (False)
+  char_vec = letters[1:10], #ten characters
   factor_vec = factor(rep(c("low", "medium", "high"), 
                           length.out = 10),
-                      levels = c("low", "medium", "high"))
+                      levels = c("low", "medium", "high")) #a factor vector of length 10, with 3 different factor “levels”
 )
 ```
 This is the dataframe for problem 2: 
